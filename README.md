@@ -10,5 +10,5 @@ https://documenter.getpostman.com/view/8948377/SVtR2WAH?version=latest
 
 Update: 
 got postgresql working after the submission time ended.
-the code is in the postgre branch and a working version is up on heroku
+the code is in the postgretest branch and a working version is up on heroku
 http://pa-java-postgre.herokuapp.com/
