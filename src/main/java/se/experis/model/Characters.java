@@ -1,8 +1,6 @@
 package se.experis.model;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import java.util.List;
 
 
 @Entity
@@ -34,7 +32,7 @@ public class Characters {
 
     @ManyToOne(optional = false /*fetch = FetchType.LAZY*/)
     @JoinColumn(name = "user_id", referencedColumnName = "id", insertable = false, updatable = false) // insertable, updatable and optional tips from tim.
-    private User user;
+    private Users users;
 
     @ManyToOne(optional = false /*fetch = FetchType.LAZY*/)
     @JoinColumn(name = "class_id", referencedColumnName = "id", insertable = false, updatable = false)
@@ -93,4 +91,11 @@ public class Characters {
         this.classId = classId;
     }
 
+    public CharacterClasses getCharacterClasses() {
+        return characterClasses;
+    }
+
+    public Users getUsers() {
+        return users;
+    }
 }
