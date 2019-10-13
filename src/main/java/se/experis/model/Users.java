@@ -9,7 +9,7 @@ import java.util.List;
 
 @Entity
 @Table
-public class User {
+public class Users {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,7 +31,7 @@ public class User {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     private List<Characters> characters;
 
-    public User() {
+    public Users() {
         id = 0;
     }
 
