@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript">
+   function addUser(){
+           // Get Data from form
+           var userName = document.getElementById("userName").value;
+           var userPassword = document.getElementById("userPassword").value;
+           var userEmail = document.getElementById("userEmail").value;
+           // Make a JSON object
+           var userJson = {userName:userName, userPassword:userPassword, userEmail:userEmail};
+           // Print it as a string
+           console.log(JSON.stringify(userJson));
+           // Do request stuff
+           var xhr = new XMLHttpRequest();
+           xhr.open("POST", '/api/add');
+           // Send the proper header information along with the request
+           xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+           xhr.onreadystatechange = function() { // Call a function when the state changes.
+                console.log("responseTEST");
+                console.log(xhr.response); //get the return from the controller..
+               if (this.readyState === XMLHttpRequest.DONE && this.status === 200 && xhr.response === 200) {
+                   // Request finished. Do processing here.
+                   console.log("COMPLETED!");
+                   document.getElementById("userName").reset();
+                   document.getElementById("userPassword").reset();
+                   document.getElementById("userEmail").reset();
+                   //redirect on client
+               } /*else {
+                   console.log("--- FAIL --- \n status code: " + xhr.response );
+                   window.alert("Something went wrong");
+               }*/
+           }
+           // Send the request as a string
+           xhr.send(JSON.stringify(userJson));
+       }
+
+   function addCharacter(){
+           // Get Data from form
+           var user = document.getElementById("userId").value;
+           var charRace = document.getElementById("classId").value;
+           var charName = document.getElementById("charName").value;
+           var charRace = document.getElementById("charRace").value;
+           var charLevel = document.getElementById("charLevel").value;
+
+           // Make a JSON object
+           var charJson = {charName:charName, charRace:charRace, charLevel:charLevel, userId:userId, classId:classId};
+           //var charJson = {charName:charName, charRace:charRace, charLevel:charLevel};
+           // Print it as a string
+           console.log(JSON.stringify(charJson));
+           // Do request stuff
+           var xhr = new XMLHttpRequest();
+           xhr.open("POST", '/api/addCharacters');
+           // Send the proper header information along with the request
+           xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+           xhr.onreadystatechange = function() { // Call a function when the state changes.
+                console.log("responseTEST");
+                console.log(xhr.response); //get the return from the controller..
+               if (this.readyState === XMLHttpRequest.DONE && this.status === 200 && xhr.response === 200) {
+                   // Request finished. Do processing here.
+                   console.log("COMPLETED!");
+                   document.getElementById("userId").reset();
+                   document.getElementById("classId").reset();
+                   document.getElementById("charName").reset();
+                   document.getElementById("charRace").reset();
+                   document.getElementById("charLevel").reset();
+
+                   //redirect on client
+               } /*else {
+                   console.log("--- FAIL --- \n status code: " + xhr.response );
+                   window.alert("Something went wrong");
+               }*/
+           }
+           // Send the request as a string
+           xhr.send(JSON.stringify(charJson));
+       }
+   </script>
+    <title>Title</title>
+</head>
+<body>
+<form id="userForm" name="userForm">
+    User name:<br><input type="text" id="userName" name="userName" value=""><br>
+    Password:<br><input type="text" id="userPassword" name="userPassword" value=""><br>
+    Email:<br><input type="text" id="userEmail" name="userEmail" value=""><br>
+    <input value="Submit" type="button" id="userbutton" onclick="addUser()">
+</form>
+
+<p></p>
+<form id="charForm" name="charForm">
+    User name:<br><input type="text" id="userId" name="userId" value=""><br>
+    Character Class:<br><input type="text" id="classId" name="classId" value=""><br>
+    Character Name:<br><input type="text" id="charName" name="charName" value=""><br>
+    Character Race:<br><input type="text" id="charRace" name="charRace" value=""><br>
+    Character Level:<br><input type="text" id="charLevel" name="charLevel" value=""><br>
+    <input value="Submit" type="button" id="charbutton" onclick="addCharacter()">
+</form>
+</body>
+</html>

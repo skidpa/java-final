@@ -3,10 +3,13 @@ package se.experis.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import se.experis.model.Characters;
+import se.experis.model.User;
 import se.experis.repository.CharactersRepository;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import java.util.List;
+import org.json.*;
 
 @RestController
 public class CharactersController {
@@ -22,15 +25,7 @@ public class CharactersController {
     @ResponseBody
     public Characters addCharacters(HttpServletResponse response, @RequestBody Characters characters) {
 
-        Characters newCharacters = charactersRepository.save(characters);
-
-        if (newCharacters.getId() == 0) {
-            response.setStatus(400);
-        } else {
-            response.setStatus(201);
-        }
-
-        return newCharacters;
+        return charactersRepository.save(characters);
     }
 
     // works
